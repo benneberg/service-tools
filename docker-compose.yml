@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  service-tools:
+    build: .
+    container_name: service-tools-app
+    restart: unless-stopped
+    environment:
+      # Use either SIGNAGEOS_X_AUTH or SIGNAGEOS_API_KEY
+      SIGNAGEOS_X_AUTH: "${SIGNAGEOS_X_AUTH:-}"
+      SIGNAGEOS_API_KEY: "${SIGNAGEOS_API_KEY:-}"
+      SIGNAGEOS_API_BASE: "${SIGNAGEOS_API_BASE:-https://api.signageos.io/v2}"
+      AUDIT_LOG_PATH: "/data/audit.log"
+    volumes:
+      - ./data:/data
+    ports:
+      - "5000:5000"
