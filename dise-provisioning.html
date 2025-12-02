@@ -104,6 +104,9 @@
       <a href="#SignageOS-ChromeOS" id="menu-SignageOS-ChromeOS" class="menu-item py-2 px-3 rounded-md text-gray-300 hover:bg-gray-700 transition">
         SignageOS - ChromeOS
       </a>
+      <a href="#SignageOS-UnLockStandAloneDevice" id="menu-SignageOS-UnLockStandAloneDevice" class="menu-item py-2 px-3 rounded-md text-gray-300 hover:bg-gray-700 transition">
+        SignageOS – Un Lock StandAloneDevice
+      </a>
     </nav>
     <div class="mt-auto pt-4 border-t border-gray-700 text-sm text-gray-500">
       DISE Partner Portal v1.0
@@ -158,6 +161,31 @@
           </div>
         </div>
 
+<!-- SignageOS Un Lock StandAloneDevice -->
+<div class="page hidden" id="page-SignageOS-UnLockStandAloneDevice">
+  <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">SignageOS – Un Lock StandAloneDevice</h2>
+
+  <div class="card bg-gray-900/80 rounded-lg p-4">
+    <p class="text-gray-300 mb-3">Enter the device IP (assigned during Google provisioning), the device policy ID you wish to remove, and optionally Org ID and your support user id for audit.</p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+      <input id="unlock_deviceIp" type="text" placeholder="Device IP (e.g. 192.168.10.5)" class="p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+      <input id="unlock_policyId" type="text" placeholder="Policy ID (e.g. policy-xxxx)" class="p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+    </div>
+
+    <input id="unlock_orgId" type="text" placeholder="Org ID (optional)" class="w-full mt-2 p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+    <input id="unlock_supportUser" type="text" placeholder="Support user (optional, e.g. john.doe)" class="w-full mt-2 p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+
+    <div class="flex gap-2 mt-3">
+      <button id="unlock_run" class="bg-accent px-4 py-2 rounded-md text-white hover:bg-green-600">Run</button>
+      <button id="unlock_copy" class="bg-gray-700 px-4 py-2 rounded-md text-gray-300 hover:bg-gray-600">Copy API Call</button>
+    </div>
+
+    <pre id="unlock_output" class="mt-4 p-3 bg-gray-800 rounded text-sm text-gray-300 overflow-auto min-h-[80px]"></pre>
+  </div>
+</div>
+
+        
         <!-- SignageOS Provisioning Page - ID matches #SignageOS-ChromeOS -->
         <div class="page hidden" id="page-SignageOS-ChromeOS">
           <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">SignageOS - ChromeOS Provisioning</h2>
@@ -605,6 +633,59 @@ echo ""
     toggleCodeBtn.addEventListener('click', toggleScriptView);
   }
 
+
+
+// Unlock tool wiring
+(function () {
+  const runBtn = document.getElementById('unlock_run');
+  const copyBtn = document.getElementById('unlock_copy');
+  const out = document.getElementById('unlock_output');
+
+  if (!runBtn || !copyBtn || !out) return;
+
+  runBtn.addEventListener('click', async () => {
+    const deviceIp = document.getElementById('unlock_deviceIp').value.trim();
+    const policyId = document.getElementById('unlock_policyId').value.trim();
+    const orgId = document.getElementById('unlock_orgId').value.trim();
+    const supportUser = document.getElementById('unlock_supportUser').value.trim();
+
+    if (!deviceIp || !policyId) {
+      out.textContent = '⚠️ Please fill Device IP and Policy ID.';
+      return;
+    }
+    out.textContent = 'Running...';
+
+    try {
+      const resp = await fetch('/api/signageos/unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ deviceIp, policyId, orgId, supportUser })
+      });
+      const data = await resp.json();
+      if (resp.ok) {
+        out.textContent = `✅ ${data.message}`;
+      } else {
+        out.textContent = `❌ ${data.message}`;
+      }
+    } catch (e) {
+      out.textContent = `❌ Exception: ${e.message}`;
+    }
+  });
+
+  copyBtn.addEventListener('click', () => {
+    const deviceIp = document.getElementById('unlock_deviceIp').value.trim();
+    const policyId = document.getElementById('unlock_policyId').value.trim();
+    if (!deviceIp || !policyId) {
+      showToast('error', 'Fill Device IP and Policy ID first');
+      return;
+    }
+    // cURL uses placeholder for auth; instruct support to replace with real token or use the web app
+    const curl = `curl -X POST "http://<HOST_OR_PROXY>/api/signageos/unlock" -H "Content-Type: application/json" -d '{"deviceIp":"${deviceIp}","policyId":"${policyId}","orgId":"<orgId_optional>","supportUser":"<you>"}'`;
+    copyText(curl);
+  });
+})();
+
+  
   /* -------------------------
     Router Init
   ------------------------- */
