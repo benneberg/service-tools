@@ -22,3 +22,15 @@ This application provides internal support tools for partners, including:
 ```bash
 git clone <repo-url>
 cd support-app
+
+export SIGNAGEOS_API_KEY="your_signageos_api_key"
+
+Run app: 
+python app.py
+
+
+Open http://127.0.0.1:5000/.
+
+Docker (recommended)
+
+Create a .env file with:
