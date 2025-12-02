@@ -15,7 +15,7 @@ Removes the **Standalone Mode Locked** policy from specific devices in SignageOS
 3. Click **Run** to remove policy.
 4. Optionally, click **Copy API Call** for CLI use.
 
-## Manual Fallback
+## Manual Fallback (portal):
 1. Log in to SignageOS with admin account.
 2. Navigate to **Organizations → [Target Org] → Devices**.
 3. Select the device → **Policies**.
