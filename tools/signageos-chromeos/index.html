@@ -1,0 +1,65 @@
+<!-- SignageOS Provisioning Page - ID matches #SignageOS-ChromeOS -->
+<div class="page hidden" id="page-SignageOS-ChromeOS">
+  <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">SignageOS - ChromeOS Provisioning</h2>
+
+  <!-- Tab Navigation -->
+  <div class="flex border-b border-gray-700 mb-6 -mt-2">
+    <button data-tab="script" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('script', this)">Gcloud Script</button>
+    <button data-tab="readme" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('readme', this)">Readme</button>
+  </div>
+
+  <!-- Tab Content Container -->
+  <div id="tabContent">
+    
+    <!-- Tab 1: Gcloud Script Content -->
+    <div id="tab-content-script">
+      <div class="card bg-gray-900/80 rounded-lg" id="scriptCard">
+        <div class="flex justify-between items-center p-4 border-b border-gray-700">
+          <div>
+            <strong class="text-white">Gcloud Onboarding Script</strong>
+            <div class="text-sm text-gray-400 mt-1">Run this script in your Google Cloud Shell or local CLI.</div>
+          </div>
+          
+          <div class="flex gap-2">
+            <!-- Download Button -->
+            <button id="downloadScriptBtn" class="flex items-center gap-1 p-2 rounded-md bg-accent hover:bg-accent-dark text-white transition" aria-label="Download script">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+              <span class="hidden sm:inline">Download</span>
+            </button>
+            
+            <!-- Copy Button -->
+            <button class="copyBtn p-2 rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300" id="copyScriptBtn" aria-label="Copy script">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+            </button>
+          </div>
+        </div>
+        <!-- Code Block - Always visible now -->
+        <pre id="scriptCodeBlock" class="code p-4 overflow-auto"><code id="scriptCode" class="text-sm text-gray-300 font-mono" style="white-space:pre-wrap;"></code></pre>
+      </div>
+    </div>
+
+    <!-- Tab 2: Readme Content -->
+    <div id="tab-content-readme" class="hidden">
+      <h3 class="text-xl font-semibold text-white mb-3">README: Script Details</h3>
+      <div class="prose prose-invert prose-sm max-w-none text-gray-300 bg-gray-900/80 rounded-lg p-4">
+        <h4 class="text-white mt-0">About this script</h4>
+        <p>This script provides a single, ready-to-use command sequence to provision Google Workspace and Google Cloud for use with signageOS.</p>
+        <p>You must run this script using a **Google Workspace Super Admin** account, either in the Google Cloud Shell or a local <code class="text-accent-light">gcloud</code> CLI.</p>
+        
+        <h4 class="text-white mt-4">Why use this script?</h4>
+        <p>Manually configuring Google's services for ChromeOS management is complex and error-prone. This script automates all possible steps and provides clear instructions for the **two required manual steps**: Domain-Wide Delegation and Admin Role Privileges.</p>
+        
+        <h4 class="text-white mt-4">What it does</h4>
+        <ul>
+          <li>Prompts you to select or create a Google Cloud Project.</li>
+          <li>Enables the required APIs (Admin SDK, Chrome Management, IAM).</li>
+          <li>Creates a new Service Account.</li>
+          <li>Generates and downloads a JSON key for that account.</li>
+          <li>Provides you with the **Customer ID**, **Service Account Client ID**, and the **exact manual steps** to complete Domain-Wide Delegation and set **Admin Role Privileges** in your Admin Console.</li>
+        </ul>
+        <h4 class="text-white mt-4">Review Notes (2025-03-11)</h4>
+        <p>The script has been reviewed and verified. All <code class="text-accent-light">gcloud</code> commands, API enablement steps, and OAuth scopes are current and correct for enabling ChromeOS device management via the Admin SDK and Chrome Management API.</p>
+      </div>
+    </div>
+  </div>
+</div>

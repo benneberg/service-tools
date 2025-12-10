@@ -6,78 +6,9 @@
 <title>DISE — Partner Portal</title>
 <link rel="icon" href="data:,">
 <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
-<style>
-  /* Base styles */
-  body {
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  /* Animations */
-  .slide-in-bottom { animation: slideInBottom 0.3s ease-out; }
-  .slide-out-bottom { animation: slideOutBottom 0.3s ease-in forwards; }
-  @keyframes slideInBottom { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(20px); } }
-  @keyframes slideOutBottom { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(20px); } }
-
-  .sidebar {
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-out;
-    z-index: 50;
-  }
-  .sidebar.open {
-    transform: translateX(0);
-  }
-  .overlay {
-    transition: opacity 0.3s ease-out;
-    z-index: 40;
-  }
-  
-  /* Custom loader for toasts */
-  .btn-loader {
-    width: 1.25rem;
-    height: 1.25rem;
-    border-radius: 50%;
-    display: inline-block;
-    border-top: 2px solid #fff;
-    border-right: 2px solid transparent;
-    box-sizing: border-box;
-    animation: spin 1s linear infinite;
-  }
-  @keyframes spin {
-    to { transform: rotate(360deg); }
-  }
-  
-  /* Tab Styles (using hex colors for consistency with original design) */
-  .tab {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    font-weight: 600;
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    transition: all 0.2s ease-in-out;
-    color: #9ca3af; /* text-gray-400 */
-  }
-  
-  .tab:hover:not(.active) {
-    color: #e5e7eb; /* hover:text-gray-200 */
-    background-color: rgba(55, 65, 81, 0.5); /* bg-gray-700/50 */
-  }
-  
-  .tab.active {
-    background-color: #10b981; /* accent-500 */
-    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -2px rgba(16, 185, 129, 0.1);
-    color: white;
-  }
-  #tab-content-readme li {
-    list-style-type: disc;
-    margin: 1rem 1rem .5rem 1rem;
-  }
-</style>
+<link rel="stylesheet" href="shared/styles.css">
 <script>
-  // Apply Tailwind dark mode
+  // Apply Tailwind dark mode configuration
   tailwind.config = {
     darkMode: 'class',
     theme: {
@@ -101,7 +32,6 @@
   <div id="sidebar" class="sidebar fixed top-0 left-0 h-full w-64 bg-gray-800 border-r border-gray-700 p-4 shadow-2xl flex flex-col">
     <h2 class="text-3xl font-bold tracking-tighter text-white border-b border-gray-700 pb-4 mb-4">dise</h2>
     <nav class="flex flex-col gap-2">
-      <!-- Menu items use exact hash name as their ID -->
       <a href="#home" id="menu-home" class="menu-item py-2 px-3 rounded-md text-gray-300 hover:bg-gray-700 transition">
         Home
       </a>
@@ -113,7 +43,7 @@
       </a>
     </nav>
     <div class="mt-auto pt-4 border-t border-gray-700 text-sm text-gray-500">
-      DISE Partner Portal v1.0
+      DISE Partner Portal v2.0
     </div>
   </div>
 
@@ -141,156 +71,10 @@
     <div class="card w-full max-w-4xl bg-gray-800/70 backdrop-blur-md border border-gray-700/50 rounded-xl shadow-2xl overflow-hidden mt-4">
       
       <!-- Content Pages Container -->
-      <div class="page-container p-4 sm:p-6 min-h-[400px]">
-        
-        <!-- Home Page - ID matches #home -->
-        <div class="page hidden" id="page-home">
-          <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">Welcome to the Partner Portal</h2>
-          
-          <div class="grid md:grid-cols-2 gap-6">
-            
-            <!-- Image Placeholder -->
-            <div class="p-6 bg-gray-900/50 rounded-lg border border-gray-700 flex flex-col items-center justify-center h-full">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-gray-600 mb-4" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM5 19l3-4 2 2 5-6 4 5V5h-14v14z"/></svg>
-              <p class="text-gray-500 text-sm">Marketing Asset Placeholder (4:3)</p>
-            </div>
-
-            <!-- Short Content Text Field -->
-            <div class="p-6 bg-gray-900/50 rounded-lg border border-gray-700">
-              <label for="partnerNote" class="block text-sm font-medium text-white mb-2">My Partner Note</label>
-              <textarea id="partnerNote" rows="6" class="w-full bg-gray-700/50 text-gray-200 border-gray-600 rounded-lg focus:ring-accent focus:border-accent resize-none p-3" placeholder="Jot down quick notes or reminders related to this portal. This data is saved locally in your browser."></textarea>
-              <p class="text-xs text-gray-500 mt-2">Data is saved automatically in your browser.</p>
-            </div>
-
-          </div>
-        </div>
-
-<!-- SignageOS Un Lock StandAloneDevice -->
-<div class="page hidden" id="page-SignageOS-UnLockStandAloneDevice">
-  <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">SignageOS – Un Lock StandAloneDevice</h2>
-          <!-- Tab Navigation -->
-          <div class="flex border-b border-gray-700 mb-6 -mt-2">
-            <button data-tab="script" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('script', this)">RestApi Script</button>
-            <button data-tab="readme" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('readme', this)">Readme</button>
-          </div>
-  
-          <!-- Tab Content Container -->
-          <div id="tabContent">
-            
-            <!-- Tab 1: Gcloud Script Content -->
-            <div id="tab-content-script">
-              <div class="card bg-gray-900/80 rounded-lg" id="scriptCard">
-    <p class="text-gray-300 mb-3">Enter the device IP (assigned during Google provisioning), the device policy ID you wish to remove, and optionally Org ID and your support user id for audit.</p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-      <input id="unlock_deviceIp" type="text" placeholder="Device IP (e.g. 192.168.10.5)" class="p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
-      <input id="unlock_policyId" type="text" placeholder="Policy ID (e.g. policy-xxxx)" class="p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
-    </div>
-
-    <input id="unlock_orgId" type="text" placeholder="Org ID (optional)" class="w-full mt-2 p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
-    <input id="unlock_supportUser" type="text" placeholder="Support user (optional, e.g. john.doe)" class="w-full mt-2 p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
-
-    <div class="flex gap-2 mt-3">
-      <button id="unlock_run" class="bg-accent px-4 py-2 rounded-md text-white hover:bg-green-600">Run</button>
-      <button id="unlock_copy" class="bg-gray-700 px-4 py-2 rounded-md text-gray-300 hover:bg-gray-600">Copy API Call</button>
-    </div>
-
-    <pre id="unlock_output" class="mt-4 p-3 bg-gray-800 rounded text-sm text-gray-300 overflow-auto min-h-[80px]"></pre>
-  </div>
-                          </div>
-
-            <!-- Tab 2: Readme Content -->
-            <div id="tab-content-readme" class="hidden">
-              <h3 class="text-xl font-semibold text-white mb-3">Manual Guide</h3>
-              <span>
-                    <p><strong>Manual Procedure Guide</strong></p>
-    <p><strong>Note:</strong> Only remove the policy for authorized requests to prevent accidental security risks.</p>
-    <ol>
-        <li>Log into the SignageOS portal (<a href="https://box.signageos" target="_blank">box.signageos</a>) with a Dise account that has admin rights.</li>
-        <li>Navigate to <strong>Organizations → [Target Org] → Devices</strong>.</li>
-        <li>Search for the device by ID, serial number, or name.</li>
-        <li>Click the device and go to <strong>Policies</strong>.</li>
-        <li>Find the <strong>Standalone Mode Locked</strong> policy.</li>
-        <li>Click <strong>Remove / Disable</strong>.</li>
-        <li>Confirm removal.</li>
-        <li>Verify the device no longer has the policy applied.</li>
-        <li>Set the standalone mode to unlocked and verify the setting is now persistent by restarting the app via the app settings in the upper-right menu.</li>
-        <li>Communicate back to the partner that the device is now unlocked.</li>
-        <li>Inform the partner that they need to notify support when the device should be locked again.</li>
-    </ol>
-    <p><em>Last revised: 2025-12-02</em></p>
-              </span>
-            </div>
-</div>
-
-        
-        <!-- SignageOS Provisioning Page - ID matches #SignageOS-ChromeOS -->
-        <div class="page hidden" id="page-SignageOS-ChromeOS">
-          <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">SignageOS - ChromeOS Provisioning</h2>
-
-          <!-- Tab Navigation -->
-          <div class="flex border-b border-gray-700 mb-6 -mt-2">
-            <button data-tab="script" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('script', this)">Gcloud Script</button>
-            <button data-tab="readme" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('readme', this)">Readme</button>
-          </div>
-
-          <!-- Tab Content Container -->
-          <div id="tabContent">
-            
-            <!-- Tab 1: Gcloud Script Content -->
-            <div id="tab-content-script">
-              <div class="card bg-gray-900/80 rounded-lg" id="scriptCard">
-                <div class="flex justify-between items-center p-4 border-b border-gray-700">
-                  <div>
-                    <strong class="text-white">Gcloud Onboarding Script</strong>
-                    <div class="text-sm text-gray-400 mt-1">Run this script in your Google Cloud Shell or local CLI.</div>
-                  </div>
-                  
-                  <div class="flex gap-2">
-                    <!-- Code Toggle Button -->
-                    <button id="toggleCodeBtn" class="flex items-center gap-1 p-2 rounded-md hover:bg-gray-700/50 text-accent hover:text-accent-light transition" aria-label="Toggle script view">
-                      <svg id="viewIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /></svg>
-                      <svg id="hideIcon" class="hidden h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.875 18.823A10.05 10.05 0 0112 19.5c-4.638 0-8.573-3.007-9.963-7.178.07-.207.07-.431 0-.639C3.423 7.51 7.36 4.5 12 4.5c1.6 0 3.123.47 4.492 1.306L13.875 18.823zm-2.008-8.204a3 3 0 013 3m1.084 3.084l3.18 3.18L21 19l-4.243-4.243m-4.004 0L10.5 12.5l-3.24 3.24M18.823 13.875l3.18 3.18L21 17l-4.243-4.243L18.823 13.875z" /></svg>
-                      <span id="toggleCodeText">View Script</span>
-                    </button>
-                    
-                    <!-- Copy Button -->
-                    <button class="copyBtn p-2 rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300" id="copyScriptBtn" aria-label="Copy script">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
-                    </button>
-                  </div>
-                </div>
-                <!-- Code Block (Hidden by default) -->
-                <pre id="scriptCodeBlock" class="code p-4 overflow-auto hidden"><code id="scriptCode" class="text-sm text-gray-300 font-mono" style="white-space:pre-wrap;"></code></pre>
-              </div>
-            </div>
-
-            <!-- Tab 2: Readme Content -->
-            <div id="tab-content-readme" class="hidden">
-              <h3 class="text-xl font-semibold text-white mb-3">README: Script Details</h3>
-              <div class="prose prose-invert prose-sm max-w-none text-gray-300 bg-gray-900/80 rounded-lg p-4">
-                <h4 class="text-white mt-0">About this script</h4>
-                <p>This script provides a single, ready-to-use command sequence to provision Google Workspace and Google Cloud for use with signageOS.</p>
-                <p>You must run this script using a **Google Workspace Super Admin** account, either in the Google Cloud Shell or a local <code class="text-accent-light">gcloud</code> CLI.</p>
-                
-                <h4 class="text-white mt-4">Why use this script?</h4>
-                <p>Manually configuring Google's services for ChromeOS management is complex and error-prone. This script automates all possible steps and provides clear instructions for the **two required manual steps**: Domain-Wide Delegation and Admin Role Privileges.</p>
-                
-                <h4 class="text-white mt-4">What it does</h4>
-                <ul>
-                  <li>Prompts you to select or create a Google Cloud Project.</li>
-                  <li>Enables the required APIs (Admin SDK, Chrome Management, IAM).</li>
-                  <li>Creates a new Service Account.</li>
-                  <li>Generates and downloads a JSON key for that account.</li>
-                  <li>Provides you with the **Customer ID**, **Service Account Client ID**, and the **exact manual steps** to complete Domain-Wide Delegation and set **Admin Role Privileges** in your Admin Console.</li>
-                </ul>
-                <h4 class="text-white mt-4">Review Notes (2025-03-11)</h4>
-                <p>The script has been reviewed and verified. All <code class="text-accent-light">gcloud</code> commands, API enablement steps, and OAuth scopes are current and correct for enabling ChromeOS device management via the Admin SDK and Chrome Management API.</p>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="page-container p-4 sm:p-6 min-h-[400px]" id="pageContainer">
+        <!-- Pages will be loaded here -->
       </div>
+      
     </div>
     
     <footer class="mt-8 py-4 text-center text-gray-500 text-sm">
@@ -301,434 +85,44 @@
 
   <div class="toastWrap fixed left-1/2 -translate-x-1/2 bottom-6 z-[9999] flex flex-col gap-2 items-center" id="toasts" aria-live="polite"></div>
 
+<!-- Load shared utilities -->
+<script src="shared/utils.js"></script>
+<script src="shared/router.js"></script>
+
+<!-- Load tool-specific scripts -->
+<script src="tools/home/script.js"></script>
+<script src="tools/signageos-chromeos/script.js"></script>
+<script src="tools/signageos-unlock/script.js"></script>
+
 <script>
-/* -------------------------
-  Utilities & Setup
-------------------------- */
+// Load page HTML fragments
+async function loadPageFragments() {
+  const pages = [
+    { id: 'home', url: 'tools/home/index.html' },
+    { id: 'SignageOS-ChromeOS', url: 'tools/signageos-chromeos/index.html' },
+    { id: 'SignageOS-UnLockStandAloneDevice', url: 'tools/signageos-unlock/index.html' }
+  ];
 
-const PAGES = {
-    'home': 'Home',
-    'SignageOS-ChromeOS': 'SignageOS - ChromeOS Provisioning',
-};
-
-/* Toast system */
-const toastContainer = document.getElementById('toasts');
-function showToast(type, text, opts = {}) {
-  const el = document.createElement('div');
-  const typeClasses = {
-    info: 'bg-gray-700 text-white',
-    success: 'bg-accent text-white',
-    error: 'bg-red-600 text-white'
-  };
-  el.className = `toast shadow-lg rounded-md py-3 px-5 flex gap-3 items-center slide-in-bottom ${typeClasses[type] || typeClasses.info}`;
+  const container = document.getElementById('pageContainer');
   
-  if (opts.loader) {
-    el.innerHTML = `<span class="btn-loader !border-t-white !border-r-transparent w-5 h-5"></span> <span>${text}</span>`;
-  } else {
-    el.textContent = text;
-  }
-  
-  toastContainer.appendChild(el);
-  if (!opts.persistent) {
-    setTimeout(() => {
-      el.classList.remove('slide-in-bottom');
-      el.classList.add('slide-out-bottom');
-      setTimeout(() => el.remove(), 300);
-    }, opts.duration || 3000);
-  }
-  return el;
-}
-
-/**
- * Copy helper using document.execCommand for better iframe reliability.
- * @param {string} text The text content to copy.
- */
-function copyText(text) {
-  try {
-    const tempElement = document.createElement('textarea');
-    tempElement.value = text;
-    // Set styles to make it invisible but selectable
-    tempElement.setAttribute('readonly', '');
-    tempElement.style.position = 'absolute';
-    tempElement.style.left = '-9999px';
-    document.body.appendChild(tempElement);
-    
-    // Select the text field contents
-    tempElement.select();
-    
-    // Attempt the copy command
-    const success = document.execCommand('copy');
-    
-    document.body.removeChild(tempElement);
-
-    if (success) {
-        showToast('success', 'Copied to clipboard');
-    } else {
-        throw new Error('execCommand failed');
-    }
-    
-  } catch (e) { 
-      console.error("Copy failed via execCommand:", e);
-      // Fallback message
-      showToast('error', 'Copy failed. Try manually selecting the script text.');
-  }
-}
-
-/* -------------------------
-  Tab Logic
-------------------------- */
-
-function switchTab(tabId, clickedButton) {
-    // 1. Deactivate all tabs and hide all content
-    document.querySelectorAll('#page-SignageOS-ChromeOS .tab').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    document.querySelectorAll('#tabContent > div').forEach(content => {
-        content.classList.add('hidden');
-    });
-
-    // Determine the button to activate: prefer the element passed, otherwise find it by data-tab
-    let buttonToActivate = clickedButton;
-    if (!buttonToActivate) {
-        buttonToActivate = document.querySelector(`#page-SignageOS-ChromeOS .tab[data-tab="${tabId}"]`);
-    }
-
-    // 2. Activate the correct button and show content
-    if (buttonToActivate) {
-        buttonToActivate.classList.add('active');
-    }
-
-    const contentToShow = document.getElementById(`tab-content-${tabId}`);
-    if (contentToShow) {
-        contentToShow.classList.remove('hidden');
-    }
-}
-
-
-/* -------------------------
-  Routing & Menu Logic
-------------------------- */
-
-function router() {
-    let hash = window.location.hash.substring(1) || 'home';
-    // The page ID must exactly match "page-" + hash, including hyphens.
-    const pageId = `page-${hash}`; 
-    
-    // 1. Handle Content Visibility
-    document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-
-    const activePage = document.getElementById(pageId); // Look up using the corrected ID
-    
-    if (activePage) {
-        activePage.classList.remove('hidden');
-        document.getElementById('pageTitle').textContent = PAGES[hash] || 'Partner Portal';
-        
-        // 2. Handle Menu Active State
-        document.querySelectorAll('.menu-item').forEach(item => {
-            // Reset all menu items to default state
-            item.classList.remove('bg-gray-700', 'text-white');
-            item.classList.add('text-gray-300', 'hover:bg-gray-700');
-        });
-        
-        const activeMenuItem = document.getElementById(`menu-${hash}`);
-        if (activeMenuItem) {
-             // Set the active menu item's state
-             activeMenuItem.classList.remove('text-gray-300', 'hover:bg-gray-700');
-             activeMenuItem.classList.add('bg-gray-700', 'text-white');
-        }
-        
-        // 3. Handle Tab State (if applicable)
-        if (hash === 'SignageOS-ChromeOS') {
-             // Always default to the 'script' tab when navigating to the SignageOS page
-             const defaultTabButton = document.querySelector('#page-SignageOS-ChromeOS .tab[data-tab="script"]');
-             switchTab('script', defaultTabButton);
-        }
-
-    } else {
-        // If hash is invalid, default to home
-        document.getElementById('page-home').classList.remove('hidden');
-        document.getElementById('pageTitle').textContent = PAGES['home'];
-        window.location.hash = 'home';
-    }
-    
-    // Close menu after routing on mobile
-    if (document.getElementById('sidebar').classList.contains('open')) {
-      toggleMenu(false);
-    }
-}
-
-function toggleMenu(force) {
-    const sidebar = document.getElementById('sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const isOpen = sidebar.classList.contains('open');
-    
-    const shouldOpen = force !== undefined ? force : !isOpen;
-
-    if (shouldOpen) {
-        sidebar.classList.add('open');
-        overlay.classList.remove('pointer-events-none', 'opacity-0');
-        overlay.classList.add('opacity-100');
-    } else {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('opacity-100');
-        overlay.classList.add('pointer-events-none', 'opacity-0');
-    }
-}
-
-/* -------------------------
-  Script Toggle Logic
-------------------------- */
-
-function toggleScriptView() {
-    const codeBlock = document.getElementById('scriptCodeBlock');
-    const toggleText = document.getElementById('toggleCodeText');
-    const viewIcon = document.getElementById('viewIcon');
-    const hideIcon = document.getElementById('hideIcon');
-
-    const isHidden = codeBlock.classList.toggle('hidden');
-    
-    if (isHidden) {
-        toggleText.textContent = 'View Script';
-        viewIcon.classList.remove('hidden');
-        hideIcon.classList.add('hidden');
-    } else {
-        toggleText.textContent = 'Hide Script';
-        viewIcon.classList.add('hidden');
-        hideIcon.classList.remove('hidden');
-    }
-}
-
-
-/* -------------------------
-  Main Event Listener
-------------------------- */
-document.addEventListener('DOMContentLoaded', () => {
-
-  const menuToggle = document.getElementById('menuToggle');
-  menuToggle.addEventListener('click', () => toggleMenu());
-  
-  // Sidebar links close menu
-  // The actual navigation and content update is handled by the browser's native hash change and the router() function.
-  document.querySelectorAll('.menu-item').forEach(item => {
-    item.addEventListener('click', () => toggleMenu(false));
-  });
-
-  /* -------------------------
-    Text Field Persistence (localStorage)
-  ------------------------- */
-  const partnerNote = document.getElementById('partnerNote');
-  const savedNote = localStorage.getItem('partnerNote');
-  if (partnerNote) {
-      if (savedNote) {
-          partnerNote.value = savedNote;
-      }
-      partnerNote.addEventListener('input', () => {
-          localStorage.setItem('partnerNote', partnerNote.value);
-      });
-  }
-
-  /* -------------------------
-    Script Data and Wiring
-  ------------------------- */
-  
-  const scriptCode = document.getElementById('scriptCode');
-  const copyScriptBtn = document.getElementById('copyScriptBtn');
-  const toggleCodeBtn = document.getElementById('toggleCodeBtn');
-
-  // The complete bash script
-  const gcloudScript = `#!/bin/bash
-# This script will guide you through provisioning the necessary Google Cloud
-# resources for signageOS ChromeOS device management.
-#
-# It will:
-# 1. Prompt you to create or select a Google Cloud Project.
-# 2. Enable the required APIs.
-# 3. Create a Service Account.
-# 4. Download a JSON key for that account.
-# 5. Output the values you need for the **two mandatory manual steps**
-#    (Domain-Wide Delegation and Admin Role Privileges).
-
-set -e
-echo "--- DISE/signageOS Provisioning Script ---"
-echo ""
-
-# 1. Set Project
-read -p "Enter a NEW or EXISTING Google Cloud Project ID (e.g., my-signageos-project): " PROJECT_ID
-if [ -z "\$PROJECT_ID" ]; then
-  echo "Project ID cannot be empty."
-  exit 1
-fi
-
-echo "Configuring project: \$PROJECT_ID"
-# Try to create the project; if it exists, gcloud will notify and continue.
-gcloud projects create \$PROJECT_ID || echo "Project may already exist. Continuing..."
-gcloud config set project \$PROJECT_ID
-
-echo "Project set to \$PROJECT_ID"
-echo ""
-
-# 2. Enable APIs
-echo "Enabling necessary APIs (Admin SDK, Chrome Management, IAM)..."
-gcloud services enable admin.googleapis.com \\
-                        chromemanagement.googleapis.com \\
-                        iam.googleapis.com
-
-echo "APIs enabled."
-echo ""
-
-# 3. Create Service Account
-# We use a timestamp to ensure the SA name is unique
-SA_NAME="signageos-integration-\$(date +%s)"
-SA_DISPLAY_NAME="SignageOS Integration"
-echo "Creating Service Account: \$SA_DISPLAY_NAME (\$SA_NAME)"
-
-gcloud iam service-accounts create \$SA_NAME \\
-  --display-name="\$SA_DISPLAY_NAME" \\
-  --description="Service Account for signageOS ChromeOS management"
-
-SA_EMAIL=\$(gcloud iam service-accounts list --filter="displayName:\$SA_DISPLAY_NAME" --format="value(email)" --limit=1)
-if [ -z "\$SA_EMAIL" ]; then
-  echo "Failed to create or find Service Account. Exiting."
-  exit 1
-fi
-echo "Service Account created: \$SA_EMAIL"
-echo ""
-
-# 4. Create JSON Key
-KEY_FILE="./signageos-key.json"
-echo "Generating and downloading JSON key to \$KEY_FILE..."
-gcloud iam service-accounts keys create \$KEY_FILE \\
-  --iam-account=\$SA_EMAIL
-echo "Key file created: \$KEY_FILE"
-echo ""
-
-# 5. Get values for manual steps
-echo "Fetching required IDs for manual setup..."
-# Get the Unique ID (Client ID) for DWD
-SA_CLIENT_ID=\$(gcloud iam service-accounts describe \$SA_EMAIL --format="value(oauth2ClientId)")
-# Get the Customer ID
-CUSTOMER_ID=\$(gcloud auth print-access-token | xargs -I {} curl -s -H "Authorization: Bearer {}" https://admin.googleapis.com/admin/directory/v1/customers/my_customer | grep -o '"id": "[^"]*"' | cut -d'"' -f4)
-
-if [ -z "\$SA_CLIENT_ID" ] || [ -z "\$CUSTOMER_ID" ]; then
-  echo "Error: Could not retrieve all necessary IDs."
-  echo "Please check your permissions. You must be a Workspace Admin."
-  exit 1
-fi
-
-echo "--- SCRIPT FINISHED ---"
-echo ""
-echo "--- ⚠️ REQUIRED MANUAL STEPS ---"
-echo "The script has finished. You MUST now complete these two manual steps in your Google Workspace Admin Console to finalize setup."
-echo ""
-echo "--- 1. DOMAIN-WIDE DELEGATION (DWD) ---"
-echo "DWD authorizes the Service Account to access user data. You must delegate authority to a user who has the necessary ChromeOS Admin Role privileges (see Step 2)."
-echo ""
-echo "1. Go to: https://admin.google.com"
-echo "2. Navigate to: Security > Access and data control > API Controls > Domain-wide Delegation"
-echo "3. Click 'Add new'."
-echo "4. For 'Client ID', enter this value:"
-echo "   \$SA_CLIENT_ID"
-echo ""
-echo "5. For 'OAuth scopes', paste the following text (comma-separated):"
-echo "   https://www.googleapis.com/auth/admin.directory.device.chromeos,https://www.googleapis.com/auth/admin.directory.orgunit,https://www.googleapis.com/auth/chromemanagement.appdetails"
-echo ""
-echo "6. Click 'Authorize'."
-echo ""
-echo "--- 2. ADMIN ROLE PRIVILEGES ---"
-echo "You must ensure the user whose email you will use for DWD (the delegate user) has the required privileges to manage ChromeOS devices."
-echo ""
-echo "1. In the Admin Console, navigate to: Account -> Admin roles."
-echo "2. Edit an existing role (e.g., a custom role) or create a new one, and assign it to your chosen delegate user."
-echo "3. Under 'Privileges', ensure the following options are CHECKED under the 'Chrome management' section:"
-echo "   - Manage User Settings"
-echo "   - Manage ChromeOS Devices"
-echo "   - Manage ChromeOS Device Settings"
-echo "   - View Reports"
-echo ""
-echo "--- PROVISIONING COMPLETE ---"
-echo "You can now use the following details for your signageOS setup:"
-echo ""
-echo "   Customer ID: \$CUSTOMER_ID"
-echo "   Service Account Email: \$SA_EMAIL"
-echo "   Service Account Key File: \$KEY_FILE (the file generated in your current directory)"
-echo ""
-`;
-
-  // Put the script text into the <pre><code> block
-  if (scriptCode) {
-    scriptCode.textContent = gcloudScript;
-  }
-
-  // Wire up the copy button
-  if (copyScriptBtn) {
-    copyScriptBtn.addEventListener('click', () => {
-      copyText(gcloudScript);
-    });
-  }
-
-  // Wire up the toggle button
-  if (toggleCodeBtn) {
-    toggleCodeBtn.addEventListener('click', toggleScriptView);
-  }
-
-
-
-// Unlock tool wiring
-(function () {
-  const runBtn = document.getElementById('unlock_run');
-  const copyBtn = document.getElementById('unlock_copy');
-  const out = document.getElementById('unlock_output');
-
-  if (!runBtn || !copyBtn || !out) return;
-
-  runBtn.addEventListener('click', async () => {
-    const deviceIp = document.getElementById('unlock_deviceIp').value.trim();
-    const policyId = document.getElementById('unlock_policyId').value.trim();
-    const orgId = document.getElementById('unlock_orgId').value.trim();
-    const supportUser = document.getElementById('unlock_supportUser').value.trim();
-
-    if (!deviceIp || !policyId) {
-      out.textContent = '⚠️ Please fill Device IP and Policy ID.';
-      return;
-    }
-    out.textContent = 'Running...';
-
+  for (const page of pages) {
     try {
-      const resp = await fetch('/api/signageos/unlock', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ deviceIp, policyId, orgId, supportUser })
-      });
-      const data = await resp.json();
-      if (resp.ok) {
-        out.textContent = `✅ ${data.message}`;
-      } else {
-        out.textContent = `❌ ${data.message}`;
-      }
-    } catch (e) {
-      out.textContent = `❌ Exception: ${e.message}`;
+      const response = await fetch(page.url);
+      const html = await response.text();
+      container.insertAdjacentHTML('beforeend', html);
+    } catch (error) {
+      console.error(`Failed to load ${page.id}:`, error);
     }
-  });
+  }
+}
 
-  copyBtn.addEventListener('click', () => {
-    const deviceIp = document.getElementById('unlock_deviceIp').value.trim();
-    const policyId = document.getElementById('unlock_policyId').value.trim();
-    if (!deviceIp || !policyId) {
-      showToast('error', 'Fill Device IP and Policy ID first');
-      return;
-    }
-    // cURL uses placeholder for auth; instruct support to replace with real token or use the web app
-    const curl = `curl -X POST "http://<HOST_OR_PROXY>/api/signageos/unlock" -H "Content-Type: application/json" -d '{"deviceIp":"${deviceIp}","policyId":"${policyId}","orgId":"<orgId_optional>","supportUser":"<you>"}'`;
-    copyText(curl);
-  });
-})();
-
-  
-  /* -------------------------
-    Router Init
-  ------------------------- */
-  window.onhashchange = router;
-  router(); // Run on load
+// Initialize on load
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadPageFragments();
+  // Trigger router after pages are loaded
+  if (typeof router === 'function') {
+    router();
+  }
 });
 </script>
 </body>

@@ -1,0 +1,59 @@
+<!-- SignageOS Un Lock StandAloneDevice -->
+<div class="page hidden" id="page-SignageOS-UnLockStandAloneDevice">
+  <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-2">SignageOS – Un Lock StandAloneDevice</h2>
+  
+  <!-- Tab Navigation -->
+  <div class="flex border-b border-gray-700 mb-6 -mt-2">
+    <button data-tab="script" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('script', this)">RestApi Script</button>
+    <button data-tab="readme" class="tab px-4 py-3 text-sm font-semibold rounded-t-lg transition" onclick="switchTab('readme', this)">Readme</button>
+  </div>
+
+  <!-- Tab Content Container -->
+  <div id="tabContent">
+    
+    <!-- Tab 1: RestApi Script Content -->
+    <div id="tab-content-script">
+      <div class="card bg-gray-900/80 rounded-lg" id="scriptCard">
+        <p class="text-gray-300 mb-3">Enter the device IP (assigned during Google provisioning), the device policy ID you wish to remove, and optionally Org ID and your support user id for audit.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <input id="unlock_deviceIp" type="text" placeholder="Device IP (e.g. 192.168.10.5)" class="p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+          <input id="unlock_policyId" type="text" placeholder="Policy ID (e.g. policy-xxxx)" class="p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+        </div>
+
+        <input id="unlock_orgId" type="text" placeholder="Org ID (optional)" class="w-full mt-2 p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+        <input id="unlock_supportUser" type="text" placeholder="Support user (optional, e.g. john.doe)" class="w-full mt-2 p-2 rounded bg-gray-800 border border-gray-700 text-gray-200" />
+
+        <div class="flex gap-2 mt-3">
+          <button id="unlock_run" class="bg-accent px-4 py-2 rounded-md text-white hover:bg-green-600">Run</button>
+          <button id="unlock_copy" class="bg-gray-700 px-4 py-2 rounded-md text-gray-300 hover:bg-gray-600">Copy API Call</button>
+        </div>
+
+        <pre id="unlock_output" class="mt-4 p-3 bg-gray-800 rounded text-sm text-gray-300 overflow-auto min-h-[80px]"></pre>
+      </div>
+    </div>
+
+    <!-- Tab 2: Readme Content -->
+    <div id="tab-content-readme" class="hidden">
+      <h3 class="text-xl font-semibold text-white mb-3">Manual Guide</h3>
+      <div class="prose prose-invert prose-sm max-w-none text-gray-300">
+        <p><strong>Manual Procedure Guide</strong></p>
+        <p><strong>Note:</strong> Only remove the policy for authorized requests to prevent accidental security risks.</p>
+        <ol>
+          <li>Log into the SignageOS portal (<a href="https://box.signageos" target="_blank" class="text-accent hover:text-accent-light">box.signageos</a>) with a Dise account that has admin rights.</li>
+          <li>Navigate to <strong>Organizations → [Target Org] → Devices</strong>.</li>
+          <li>Search for the device by ID, serial number, or name.</li>
+          <li>Click the device and go to <strong>Policies</strong>.</li>
+          <li>Find the <strong>Standalone Mode Locked</strong> policy.</li>
+          <li>Click <strong>Remove / Disable</strong>.</li>
+          <li>Confirm removal.</li>
+          <li>Verify the device no longer has the policy applied.</li>
+          <li>Set the standalone mode to unlocked and verify the setting is now persistent by restarting the app via the app settings in the upper-right menu.</li>
+          <li>Communicate back to the partner that the device is now unlocked.</li>
+          <li>Inform the partner that they need to notify support when the device should be locked again.</li>
+        </ol>
+        <p><em>Last revised: 2025-12-02</em></p>
+      </div>
+    </div>
+  </div>
+</div>
