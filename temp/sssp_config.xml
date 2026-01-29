@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget>
     <ver>unknown</ver>
-    <size>5082005</size>
+    <size>5084620</size>
     <widgetname>DisePlayer</widgetname>
     <webtype>tizen</webtype>
+    <checksum>458c7295ff4040750495d48736b95e21</checksum>
 </widget>
