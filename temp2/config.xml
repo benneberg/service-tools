@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:tizen="http://tizen.org/ns/widgets" id="http://yourdomain/DisePlayer" version="2.1.0" viewmodes="maximized">
+    <access origin="*" subdomains="true"></access>
+    <tizen:allow-navigation>*</tizen:allow-navigation>
+    <tizen:content-security-policy>*</tizen:content-security-policy>
+    <tizen:application id="X00rQ2Oj3n.DisePlayer" package="X00rQ2Oj3n" required_version="8.0"/>
+    <content src="jsclient/jsclient.htm"/>
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <icon src="jsclient/images/jsplayer_icon.png"/>
+    <tizen:metadata key="http://samsung.com/tv/metadata/prelaunch.support" value="true"/>
+    <tizen:metadata key="http://tizen.org/metadata/app_ui_type/base_screen_resolution" value="fullscreen"/>
+    <tizen:metadata key="http://samsung.com/tv/metadata/screen/orientation" value="all"/>
+    <tizen:metadata key="http://samsung.com/tv/metadata/use.network" value="false"/>
+
+    <!-- E-paper supported -->
+    <tizen:metadata key="http://samsung.com/tv/metadata/application/epaper.support" value="true"/>
+
+    <name>DisePlayer</name>
+
+    <!-- Core Privileges -->
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/package.info"/>
+
+    <!-- Media and Content Access -->
+    <tizen:privilege name="http://tizen.org/privilege/content.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/download"/>
+
+    <!-- TV-Specific Privileges -->
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.window"/>
+    <tizen:privilege name="http://tizen.org/privilege/volume.set"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/system"/>
+    <tizen:privilege name="http://tizen.org/privilege/network.set"/>
+    <tizen:privilege name="http://tizen.org/privilege/networkbearerselection"/>
+
+    <!-- Advanced System Privileges -->
+    <tizen:privilege name="http://developer.samsung.com/privilege/systemcontrol"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/network.public"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+
+    <!-- New Privileges for Tizen 7+ and Web Serial -->
+    <tizen:privilege name="http://tizen.org/privilege/serial"/>
+    <tizen:privilege name="http://tizen.org/privilege/tep.api"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/webserial"/>
+
+    <!-- Device Timer -->
+    <tizen:privilege name="http://developer.samsung.com/privilege/devicetimer"/>
+
+    <!-- Profile Specification -->
+    <tizen:profile name="tv-samsung"/>
+    
+    <!-- Settings -->
+    <tizen:setting context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+</widget>
